@@ -1,0 +1,7 @@
+---
+- name: "create user {{ username }}"
+  user:
+    name: "{{ username }}"
+    password: "{{ 'devel' | password_hash('sha512') }}"
+    createhome: yes
+    shell: /bin/bash
