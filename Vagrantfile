@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "boxcutter/ubuntu1604"
   config.vm.network "private_network", type: "dhcp"
+  config.vm.synced_folder "./src",  "/home/vagrant/src", owner: 1001, group: 1001
 
   config.vm.hostname = HOSTNAME
 
@@ -28,5 +29,7 @@ Vagrant.configure(2) do |config|
     ansible.sudo = true
     ansible.verbose = ANSIBLE_VERBOSE
   end
+
+  config.vm.provision "shell", inline: "ln -s /home/vagrant/src /home/devel/src"
 
 end
