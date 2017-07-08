@@ -1,5 +1,6 @@
 OPEN_GUI = false
 
+USERNAME = "devel"
 HOSTNAME = "sandbox"
 MEMORY = 2048
 
@@ -11,7 +12,7 @@ VAGRANT_COMMAND = ARGV[0]
 Vagrant.configure(2) do |config|
 
   if VAGRANT_COMMAND == "ssh"
-    config.ssh.username = "devel"
+    config.ssh.username = USERNAME
   end
 
   config.vm.box = "boxcutter/ubuntu1604"
@@ -36,6 +37,9 @@ Vagrant.configure(2) do |config|
     ansible.verbose = ANSIBLE_VERBOSE
   end
 
-  config.vm.provision "shell", inline: "ln -s /home/vagrant/src /home/devel/src"
+  config.vm.provision "shell" do |shell|
+    shell.name = "create src symlink in #{USERNAME} user home to synced folder"
+    shell.inline = "ln -s --force --no-target-directory /home/vagrant/src /home/#{USERNAME}/src"
+  end
 
 end

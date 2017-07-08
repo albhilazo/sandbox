@@ -3,6 +3,7 @@
   user:
     name: "{{ username }}"
     password: "{{ 'devel' | password_hash('sha512') }}"
+    update_password: on_create
     createhome: yes
     shell: /bin/bash
 
