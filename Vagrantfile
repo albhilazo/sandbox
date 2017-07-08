@@ -6,7 +6,13 @@ MEMORY = 2048
 ANSIBLE_VERBOSE = true
 ANSIBLE_VERSION = "2.3.1.0"
 
+VAGRANT_COMMAND = ARGV[0]
+
 Vagrant.configure(2) do |config|
+
+  if VAGRANT_COMMAND == "ssh"
+    config.ssh.username = "devel"
+  end
 
   config.vm.box = "boxcutter/ubuntu1604"
   config.vm.network "private_network", type: "dhcp"
