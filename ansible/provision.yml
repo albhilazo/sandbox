@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  vars:
+    devel_user: devel
+  roles:
+    - role: user_environment
+      username: "{{ devel_user }}"

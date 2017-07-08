@@ -1,0 +1,15 @@
+---
+- name: "create user {{ username }}"
+  user:
+    name: "{{ username }}"
+    password: "{{ 'devel' | password_hash('sha512') }}"
+    createhome: yes
+    shell: /bin/bash
+
+- name: "add user {{ username }} to sudoers"
+  template:
+    src: "sudoers.j2"
+    dest: "/etc/sudoers.d/{{ username }}"
+    owner: root
+    group: root
+    mode: 0440
