@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "boxcutter/ubuntu1604"
   config.vm.network "private_network", type: "dhcp"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.synced_folder "./src",  "/home/vagrant/src", owner: 1001, group: 1001
 
   config.vm.hostname = HOSTNAME
