@@ -5,7 +5,7 @@ const app = express()
 const port = 3000
 
 app.get('/', (request, response) => {
-  const sides = 6
+  const sides = request.query.sides || 6
 
   const result = dice.roll(sides)
   response.send(`Rolled ${sides} and got: ${result}`)
