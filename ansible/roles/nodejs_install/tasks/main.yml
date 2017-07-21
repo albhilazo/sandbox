@@ -1,0 +1,11 @@
+---
+- name: "install NodeSource Node.js v{{ major_version }}.x repo"
+  shell: curl -sL https://deb.nodesource.com/setup_{{ major_version }}.x | sudo -E bash -
+  args:
+    # warn: no
+    creates: "/etc/apt/sources.list.d/nodesource.list"
+
+- name: "install Node.js v{{ major_version }}.x"
+  apt:
+    name: nodejs
+    state: present
