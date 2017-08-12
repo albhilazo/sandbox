@@ -1,13 +1,11 @@
-const heroes = []
+const repository = require('./heroes.repository')
 
 function list() {
-  return heroes
+  return repository.getAll()
 }
 
 function add(hero) {
-  heroes.push({
-    name: hero.name
-  })
+  repository.insert(hero)
 }
 
 module.exports = {
