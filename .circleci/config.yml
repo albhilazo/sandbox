@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    working_directory: /code
+    docker:
+      - image: albhilazo/sandbox-nodejs:latest
+    steps:
+      - run: npm run test-unit
