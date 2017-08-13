@@ -1,20 +1,12 @@
 const express = require('express')
-const dice = require('./dice')
+const bodyParser = require('body-parser')
+const routes = require('../routes')
 
 const app = express()
-const port = 3000
 
-app.get('/', (request, response) => {
-  const sides = request.query.sides || 6
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-  const result = dice.roll(sides)
-  response.send(`Rolled ${sides} and got: ${result}`)
-})
+app.use('/', routes)
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.log(`Error: ${err}`)
-  }
-
-  console.log(`server is listening on port ${port}`)
-})
+module.exports = app
