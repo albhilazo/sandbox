@@ -4,7 +4,8 @@ const router = express.Router()
 const dice = require('../app/dice')
 
 router.get('/', (request, response) => {
-  response.sendFile('../views/index.html', {root: __dirname })
+  // response.send('asdfaa')
+  response.sendFile('index2.html', {root: __dirname + '../public/' })
 })
 
 router.get('/dice', (request, response) => {
