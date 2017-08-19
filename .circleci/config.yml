@@ -3,6 +3,9 @@ jobs:
   build:
     working_directory: /code
     docker:
-      - image: albhilazo/sandbox-nodejs:latest
+      - image: tmaier/docker-compose:latest
     steps:
-      - run: npm run test-unit
+      - checkout
+      - setup_remote_docker
+      - run: docker-compose build
+      - run: docker-compose -f docker-compose.yml run --rm nodejs npm run test-unit
