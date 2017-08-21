@@ -6,7 +6,8 @@
   "scripts": {
     "test-unit": "./node_modules/.bin/mocha ./**/*.spec.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "start-watch": "./node_modules/.bin/nodemon --legacy-watch index.js"
   },
   "author": "Albert Hilazo",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "express": "^4.15.3"
   },
   "devDependencies": {
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "nodemon": "^1.11.0"
   }
 }
