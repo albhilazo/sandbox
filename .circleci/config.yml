@@ -7,5 +7,3 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker-compose build
-      - run: docker-compose -f docker-compose.yml run --rm nodejs npm run test-unit
