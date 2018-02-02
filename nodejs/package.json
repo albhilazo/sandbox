@@ -1,0 +1,11 @@
+{
+  "name": "sandbox-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Albert Hilazo <albhilazo@gmail.com>",
+  "license": "ISC"
+}
