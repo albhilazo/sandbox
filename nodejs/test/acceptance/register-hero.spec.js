@@ -1,6 +1,7 @@
 const { expect } = require('chai')
 
 const DungeonMaster = require('../../src/entities/dungeon-master')
+const NewHero = require('../../src/dtos/new-hero')
 const registerHero = require('../../src/use-cases/register-hero')
 
 Feature(`
@@ -16,7 +17,12 @@ Feature(`
       user = new DungeonMaster()
     })
 
-    When(`I register a new hero named "Roy"`)
+    When(`I register a new hero named "Roy"`, () => {
+      newHero = new NewHero('Roy')
+
+      registerHero(newHero)
+    })
+
     Then(`I can find "Roy" when listing all the heroes`)
   })
 
