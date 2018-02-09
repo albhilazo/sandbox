@@ -62,4 +62,14 @@ Feature(`
     })
   })
 
+  Scenario(`new hero already exists`, () => {
+    before(() => heroesRepository.clear())
+
+    Given(`I am a DungeonMaster`)
+    And(`there is a registered hero named "Roy"`)
+    When(`I register a new hero named "Roy"`)
+    Then(`I get a "DuplicateHero" error`)
+    And(`there is only one hero named "Roy" when listing all the heroes`)
+  })
+
 })
