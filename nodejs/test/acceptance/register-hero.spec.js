@@ -4,6 +4,7 @@ const DungeonMaster = require('../../src/entities/dungeon-master')
 const Player = require('../../src/entities/player')
 const NewHero = require('../../src/dtos/new-hero')
 const UnauthorizedAccessError = require('../../src/errors/unauthorized-access')
+const DuplicateHeroError = require('../../src/errors/duplicate-hero')
 const makeHeroesRepository = require('../../src/repositories/heroes')
 const makeRegisterHero = require('../../src/use-cases/register-hero')
 
@@ -64,12 +65,34 @@ Feature(`
 
   Scenario(`new hero already exists`, () => {
     before(() => heroesRepository.clear())
+    let user
+    let error
 
-    Given(`I am a DungeonMaster`)
-    And(`there is a registered hero named "Roy"`)
-    When(`I register a new hero named "Roy"`)
-    Then(`I get a "DuplicateHero" error`)
-    And(`there is only one hero named "Roy" when listing all the heroes`)
+    Given(`I am a DungeonMaster`, () => {
+      user = new DungeonMaster()
+    })
+
+    And(`there is a registered hero named "Roy"`, () => {
+      const newHero = new NewHero('Roy')
+      heroesRepository.register(newHero)
+    })
+
+    When(`I register a new hero named "Roy"`, () => {
+      try {
+        const newHero = new NewHero('Roy')
+        registerHero(user, newHero)
+      }
+      catch(e) { error = e }
+    })
+
+    Then(`I get a "DuplicateHero" error`, () => {
+      expect(error).to.be.an.instanceOf(DuplicateHeroError)
+    })
+
+    And(`there is only one hero named "Roy" when listing all the heroes`, () => {
+      const heroesNamedRoy = heroesRepository.listAll().filter(hero => hero.name === 'Roy')
+      expect(heroesNamedRoy).to.have.lengthOf(1)
+    })
   })
 
 })
