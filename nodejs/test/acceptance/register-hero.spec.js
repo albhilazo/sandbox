@@ -1,6 +1,7 @@
 const { expect } = require('chai')
 
 const DungeonMaster = require('../../src/entities/dungeon-master')
+const Player = require('../../src/entities/player')
 const NewHero = require('../../src/dtos/new-hero')
 const makeHeroesRepository = require('../../src/repositories/heroes')
 const makeRegisterHero = require('../../src/use-cases/register-hero')
@@ -33,7 +34,12 @@ Feature(`
   })
 
   Scenario(`non-DungeonMaster can't register a hero`, () => {
-    Given(`I am a Player`)
+    let user
+
+    Given(`I am a Player`, () => {
+      user = new Player()
+    })
+
     When(`I register a new hero named "Roy"`)
     Then(`I get an "UnauthorizedAccess" error`)
     And(`there is no hero named "Roy" when listing all the heroes`)
