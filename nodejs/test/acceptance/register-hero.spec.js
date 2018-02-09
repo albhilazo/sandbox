@@ -32,4 +32,11 @@ Feature(`
     })
   })
 
+  Scenario(`non-DungeonMaster can't register a hero`, () => {
+    Given(`I am a Player`)
+    When(`I register a new hero named "Roy"`)
+    Then(`I get an "UnauthorizedAccess" error`)
+    And(`there is no hero named "Roy" when listing all the heroes`)
+  })
+
 })
