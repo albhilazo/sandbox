@@ -2,7 +2,11 @@ const { expect } = require('chai')
 
 const DungeonMaster = require('../../src/entities/dungeon-master')
 const NewHero = require('../../src/dtos/new-hero')
-const registerHero = require('../../src/use-cases/register-hero')
+const makeHeroesRepository = require('../../src/repositories/heroes')
+const makeRegisterHero = require('../../src/use-cases/register-hero')
+
+const heroesRepository = makeHeroesRepository()
+const registerHero = makeRegisterHero(heroesRepository)
 
 Feature(`
   As a DungeonMaster
@@ -19,11 +23,13 @@ Feature(`
 
     When(`I register a new hero named "Roy"`, () => {
       newHero = new NewHero('Roy')
-
       registerHero(newHero)
     })
 
-    Then(`I can find "Roy" when listing all the heroes`)
+    Then(`I can find "Roy" when listing all the heroes`, () => {
+      const registeredHero = heroesRepository.listAll().find(hero => hero.name === 'Roy')
+      expect(registeredHero).to.not.be.undefined
+    })
   })
 
 })
