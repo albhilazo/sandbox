@@ -21,7 +21,7 @@ Feature(`
     before(() => heroesRepository.clear())
     let user
 
-    Given(`I am a DungeonMaster user`, () => {
+    Given(`I am a DungeonMaster`, () => {
       user = new DungeonMaster()
     })
 
@@ -30,7 +30,7 @@ Feature(`
       registerHero(user, newHero)
     })
 
-    Then(`I can find "Roy" when listing all the heroes`, () => {
+    Then(`there is a hero named "Roy" when listing all the heroes`, () => {
       const registeredHero = heroesRepository.listAll().find(hero => hero.name === 'Roy')
       expect(registeredHero).to.not.be.undefined
     })
