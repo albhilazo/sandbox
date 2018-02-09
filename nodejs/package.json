@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:acceptance",
     "test:acceptance": "mocha --ui mocha-cakes-2 --recursive test/acceptance",
-    "test:acceptance:watch": "npm run test:acceptance -- --watch"
+    "test:acceptance:watch": "npm run test:acceptance -- --watch --reporter=min"
   },
   "author": "Albert Hilazo <albhilazo@gmail.com>",
   "license": "ISC",
