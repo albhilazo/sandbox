@@ -1,7 +1,9 @@
 const { expect } = require('chai')
 
 const DungeonMaster = require('../../src/entities/dungeon-master')
+const Player = require('../../src/entities/player')
 const NewParty = require('../../src/dtos/new-party')
+const UnauthorizedAccessError = require('../../src/errors/unauthorized-access')
 const makePartiesRepository = require('../../src/repositories/parties')
 const makeCreateParty = require('../../src/use-cases/create-party')
 
@@ -34,10 +36,30 @@ Feature(`
   })
 
   Scenario(`non-DungeonMaster can't create a party`, () => {
-    Given(`I am a Player`)
-    When(`I create a new party named "Order of the Stick"`)
-    Then(`I get an "UnauthorizedAccess" error`)
-    And(`there is no party named "Order of the Stick" when listing all the parties`)
+    before(() => partiesRepository.clear())
+    let user
+    let error
+
+    Given(`I am a Player`, () => {
+      user = new Player()
+    })
+
+    When(`I create a new party named "Order of the Stick"`, () => {
+      try {
+        const newParty = new NewParty('Order of the Stick')
+        createParty(user, newParty)
+      }
+      catch(e) { error = e }
+    })
+
+    Then(`I get an "UnauthorizedAccess" error`, () => {
+      expect(error).to.be.an.instanceOf(UnauthorizedAccessError)
+    })
+
+    And(`there is no party named "Order of the Stick" when listing all the parties`, () => {
+      const createdParty = partiesRepository.listAll().find(party => party.name === 'Order of the Stick')
+      expect(createdParty).to.be.undefined
+    })
   })
 
   Scenario(`new party already exists`, () => {
