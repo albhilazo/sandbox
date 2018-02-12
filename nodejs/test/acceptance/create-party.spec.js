@@ -4,6 +4,7 @@ const DungeonMaster = require('../../src/entities/dungeon-master')
 const Player = require('../../src/entities/player')
 const NewParty = require('../../src/dtos/new-party')
 const UnauthorizedAccessError = require('../../src/errors/unauthorized-access')
+const DuplicatePartyError = require('../../src/errors/duplicate-party')
 const makePartiesRepository = require('../../src/repositories/parties')
 const makeCreateParty = require('../../src/use-cases/create-party')
 
@@ -63,11 +64,35 @@ Feature(`
   })
 
   Scenario(`new party already exists`, () => {
-    Given(`I am a DungeonMaster`)
-    And(`there is a created party named "Order of the Stick"`)
-    When(`I create a new party named "Order of the Stick"`)
-    Then(`I get a "DuplicateParty" error`)
-    And(`There is only one party named "Order of the Stick" when listing all the parties`)
+    before(() => partiesRepository.clear())
+    let user
+    let error
+
+    Given(`I am a DungeonMaster`, () => {
+      user = new DungeonMaster()
+    })
+
+    And(`there is a created party named "Order of the Stick"`, () => {
+      const newParty = new NewParty('Order of the Stick')
+      partiesRepository.create(newParty)
+    })
+
+    When(`I create a new party named "Order of the Stick"`, () => {
+      try {
+        const newParty = new NewParty('Order of the Stick')
+        createParty(user, newParty)
+      }
+      catch(e) { error = e }
+    })
+
+    Then(`I get a "DuplicateParty" error`, () => {
+      expect(error).to.be.an.instanceOf(DuplicatePartyError)
+    })
+
+    And(`There is only one party named "Order of the Stick" when listing all the parties`, () => {
+      const partiesNamedOots = partiesRepository.listAll().filter(party => party.name === 'Order of the Stick')
+      expect(partiesNamedOots).to.have.lengthOf(1)
+    })
   })
 
 })
