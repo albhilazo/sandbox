@@ -2,6 +2,10 @@ version: '3'
 services:
   nodejs:
     build: ./nodejs
+
+  scala:
+    build: ./scala
+
   ethereum:
     build: ./ethereum
     depends_on:
