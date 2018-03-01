@@ -15,8 +15,20 @@ endef
 run-puppeth:
 	$(docker-run) $(geth_alltools_image) puppeth
 
-init-node:
+
+node/init:
 	$(docker-run) $(geth_image) --datadir . init genesis-block.json
+
+node/run:
+	$(docker-run) $(geth_image) \
+		--datadir "." \
+		--mine --minerthreads 2 \
+		--unlock 0 --password account-password.txt \
+		--networkid 4224 \
+		--nodiscover --port "30303" --nat "any" \
+		--rpc --rpcport "8545" --rpccorsdomain "*" \
+		--rpcapi eth,web,personal,net \
+		--ipcpath "~/.ethereum/geth.ipc"
 
 
 account/create:
