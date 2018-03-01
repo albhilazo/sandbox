@@ -32,7 +32,7 @@ node/run:
 
 
 account/create:
-	$(docker-run) $(geth_image) --datadir . account new
+	$(docker-run) $(geth_image) --datadir . account new --password account-password.txt
 
 account/list:
 	$(docker-run) $(geth_image) --datadir . account list
