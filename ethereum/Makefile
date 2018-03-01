@@ -1,14 +1,21 @@
-geth_image := ethereum/client-go:v1.8.1
-geth_alltools_image := ethereum/client-go:alltools-v1.8.1
+.SILENT:
+
+define geth_image
+	ethereum/client-go:v1.8.1
+endef
+define geth_alltools_image
+	ethereum/client-go:alltools-v1.8.1
+endef
+
+define docker-run
+	docker run -ti --rm -w /code -v $(shell pwd)/private:/code
+endef
 
 run-puppeth:
-	docker run -ti --rm -w /code -v $(shell pwd)/private:/code $(geth_alltools_image) \
-		puppeth
+	$(docker-run) $(geth_alltools_image) puppeth
 
 init-node:
-	docker run -ti --rm -w /code -v $(shell pwd)/private:/code $(geth_image) \
-		--datadir . init genesis-block.json
+	$(docker-run) $(geth_image) --datadir . init genesis-block.json
 
 create-account:
-	docker run -ti --rm -w /code -v $(shell pwd)/private:/code $(geth_image) \
-		--datadir . account new
+	$(docker-run) $(geth_image) --datadir . account new
