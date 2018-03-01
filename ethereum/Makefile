@@ -8,3 +8,7 @@ run-puppeth:
 init-node:
 	docker run -ti --rm -w /code -v $(shell pwd)/private:/code $(geth_image) \
 		--datadir . init genesis-block.json
+
+create-account:
+	docker run -ti --rm -w /code -v $(shell pwd)/private:/code $(geth_image) \
+		--datadir . account new
