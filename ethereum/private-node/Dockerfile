@@ -4,7 +4,7 @@ ARG genesis_file=genesis-block.json
 ARG password_file=account-password.txt
 
 WORKDIR /code
-COPY ./private/ /code/
+COPY . /code/
 
 RUN geth --datadir . init ${genesis_file}
 
