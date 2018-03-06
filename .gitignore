@@ -1,5 +1,6 @@
 node_modules/
 
-geth/
-keystore/
-account-password.txt
+ethereum/**/build/
+ethereum/**/geth/
+ethereum/**/keystore/
+ethereum/**/account-password.txt

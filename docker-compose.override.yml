@@ -8,6 +8,10 @@ services:
       - ./nodejs:/code
       - /code/node_modules
   ethereum:
+    depends_on:
+      - ethereum-network
     volumes:
       - ./ethereum:/code
       - /code/node_modules
+  ethereum-network:
+    image: trufflesuite/ganache-cli:v6.0.3
