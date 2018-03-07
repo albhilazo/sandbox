@@ -4,3 +4,7 @@ services:
     build: ./nodejs
   ethereum:
     build: ./ethereum
+    depends_on:
+      - ethereum-network
+  ethereum-network:
+    image: trufflesuite/ganache-cli:v6.0.3

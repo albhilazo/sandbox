@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "truffle:migrate": "truffle migrate",
-    "truffle:console": "truffle console"
+    "test": "truffle test",
+    "test:watch": "SHELL=/bin/sh chokidar 'contracts/**' 'test/**' -c 'npm run test' --initial --silent",
+    "migrate": "truffle migrate",
+    "console": "truffle console"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "truffle": "^4.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chokidar-cli": "^1.2.0"
   }
 }

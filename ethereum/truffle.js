@@ -1,3 +1,5 @@
+require('chai/register-expect')
+
 module.exports = {
   networks: {
     development: {
@@ -6,4 +8,4 @@ module.exports = {
       network_id: '*'
     }
   }
-};
+}
