@@ -9,4 +9,5 @@ jobs:
       - setup_remote_docker
       - run: docker-compose build
       - run: docker-compose -f docker-compose.yml run --rm nodejs npm run test:acceptance
+      - run: docker-compose -f docker-compose.yml run --rm scala sbt test
       - run: docker-compose -f docker-compose.yml run --rm ethereum npm run test
