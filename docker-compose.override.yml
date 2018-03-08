@@ -7,3 +7,7 @@ services:
     volumes:
       - ./nodejs:/code
       - /code/node_modules
+  ethereum:
+    volumes:
+      - ./ethereum:/code
+      - /code/node_modules
