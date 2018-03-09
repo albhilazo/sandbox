@@ -16,3 +16,8 @@ services:
     volumes:
       - ./ethereum:/code
       - /code/node_modules
+
+  react:
+    volumes:
+      - ./react:/code
+      - /code/node_modules
