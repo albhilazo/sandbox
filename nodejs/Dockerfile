@@ -1,4 +1,4 @@
-FROM node:9.5.0-alpine
+FROM node:9.8.0-alpine
 
 WORKDIR /code
 COPY package.json package-lock.json /code/
