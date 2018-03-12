@@ -3,7 +3,8 @@ const path = require('path')
 
 config.devServer = {
   contentBase: path.resolve(__dirname, 'public'),
-  host: '0.0.0.0'
+  host: '0.0.0.0',
+  overlay: true
 }
 
 module.exports = config
