@@ -18,6 +18,9 @@ services:
       - /code/node_modules
 
   react:
+    command: ["npm", "run", "start:watch"]
+    ports:
+      - "8080:8080"
     volumes:
       - ./react:/code
       - /code/node_modules
