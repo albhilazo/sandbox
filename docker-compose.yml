@@ -12,3 +12,6 @@ services:
       - ethereum-network
   ethereum-network:
     image: trufflesuite/ganache-cli:v6.0.3
+
+  react:
+    build: ./react

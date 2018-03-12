@@ -31,3 +31,7 @@ ethereum/test:
 
 ethereum/test/watch:
 	$(dc-run) ethereum npm run test:watch
+
+
+react/build:
+	$(dc-run) react npm run build

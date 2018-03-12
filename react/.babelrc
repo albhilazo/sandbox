@@ -1,0 +1,12 @@
+{
+  "presets": [
+    // Latest ES features
+    "env",
+    // JSX
+    "react"
+  ],
+  "plugins": [
+    // Automatically load needed polyfills (for new globals like Promise and async/await)
+    "transform-runtime"
+  ]
+}
