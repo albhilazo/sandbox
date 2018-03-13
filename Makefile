@@ -6,6 +6,10 @@ define dc-run
 endef
 
 
+build:
+	docker-compose build
+
+
 nodejs/test:
 	$(dc-run) nodejs npm run test
 
