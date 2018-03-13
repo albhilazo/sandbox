@@ -7,4 +7,4 @@ RUN npm install
 
 COPY . /code
 
-CMD [ "npm", "run", "truffle:migrate" ]
+CMD [ "npm", "run", "migrate" ]
