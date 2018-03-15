@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:watch": "react-native-scripts start"
   },
   "author": "",
   "license": "ISC",

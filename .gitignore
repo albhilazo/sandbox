@@ -8,3 +8,5 @@ ethereum/**/keystore/
 ethereum/**/account-password.txt
 
 react/**/sandbox-react.bundle.js
+
+react-native/**/.expo/
