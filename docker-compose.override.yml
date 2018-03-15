@@ -21,3 +21,14 @@ services:
     volumes:
       - ./react:/code
       - /code/node_modules
+
+  react-native:
+    command: ["npm", "run", "start:watch"]
+    environment:
+      - REACT_NATIVE_PACKAGER_HOSTNAME=${HOST_IP}
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+    volumes:
+      - ./react-native:/code
+      - /code/node_modules

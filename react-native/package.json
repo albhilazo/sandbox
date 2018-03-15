@@ -1,0 +1,19 @@
+{
+  "name": "sandbox-react-native",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:watch": "react-native-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expo": "^25.0.0",
+    "react": "16.2.0",
+    "react-native": "0.52.0"
+  },
+  "devDependencies": {
+    "react-native-scripts": "1.11.1"
+  }
+}
