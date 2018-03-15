@@ -21,3 +21,8 @@ services:
     volumes:
       - ./react:/code
       - /code/node_modules
+
+  react-native:
+    volumes:
+      - ./react-native:/code
+      - /code/node_modules
