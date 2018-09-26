@@ -23,7 +23,7 @@ services:
       - /code/node_modules
 
   react-native:
-    command: ["npm", "run", "start:watch"]
+    command: ["npm", "run", "start"]
     environment:
       - REACT_NATIVE_PACKAGER_HOSTNAME=${HOST_IP}
     ports:
