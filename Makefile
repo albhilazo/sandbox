@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: nodejs/* ethereum/*
+.PHONY: nodejs/* ethereum/* react-native/*
 
 define dc-run
 	docker-compose run --rm
@@ -44,3 +44,9 @@ react/build:
 react-native/start:
 	$(eval host_ip ?= $(shell ifconfig | grep 'inet\s' | grep -Fv '127.0.0.1' | awk 'NR==1{print $$2}'))
 	HOST_IP=$(host_ip) $(dc-run) --service-ports react-native
+
+react-native/test:
+	$(dc-run) react-native npm run test
+
+react-native/test/watch:
+	$(dc-run) react-native npm run test:watch

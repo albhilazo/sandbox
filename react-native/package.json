@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "expo start"
+    "start": "expo start",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "expo": "^30.0.1",
+    "jest": "^23.6.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
   }
