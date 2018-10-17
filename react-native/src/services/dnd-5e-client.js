@@ -1,16 +1,10 @@
-const getClassesList = () => () => {
-  return [
-    {
-      "name": "Cleric",
-      "url": "http://apiurl/cleric"
-    },
-    {
-      "name": "Rogue",
-      "url": "http://apiurl/rogue"
-    }
-  ]
-}
+const makeDnD5eClient = ({ axios, apiUrl }) => ({
 
-export default makeDnD5eClient = () => ({
-  getClassesList: getClassesList()
+  getClassesList: async () => {
+    const response = await axios.get(`${apiUrl}/classes`)
+    return response.data.results
+  }
+
 })
+
+export default makeDnD5eClient
