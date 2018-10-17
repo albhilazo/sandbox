@@ -1,13 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import Header from './src/components/Header'
+import ClassesList from './src/components/ClassesList'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Header text={'Title'} />
-        <Text>Hai!</Text>
+        <ClassesList
+          classes={[
+            { "name": "Cleric", "url": "http://apiurl/cleric" },
+            { "name": "Rogue",  "url": "http://apiurl/rogue"  },
+          ]}
+        />
       </View>
     )
   }
